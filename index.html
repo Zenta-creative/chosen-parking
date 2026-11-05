@@ -13,7 +13,12 @@
 <script>
 const p=new URLSearchParams(window.location.search).get('pass');
 const code=(p||'').toUpperCase();const valid=/^P(0[1-9]|1[0-9]|2[0-2])$/.test(code);
-if(valid){document.getElementById('number').textContent=code;document.title='CHOSEN V | Parking '+code;}
+if(valid){
+  const category=Number(code.slice(1))<=8?'VVIP':'VIP';
+  document.getElementById('number').textContent=code;
+  document.getElementById('tag').textContent=category+' PARKING PASS';
+  document.title='CHOSEN V | '+category+' Parking '+code;
+}
 else{document.getElementById('card').classList.add('error');document.getElementById('check').textContent='!';document.getElementById('heading').textContent='PASS NOT FOUND';document.getElementById('subtitle').textContent='Please scan the QR code on your parking pass.';document.getElementById('number').textContent='—';document.getElementById('tag').textContent='CHOSEN V PARKING';document.getElementById('foot').textContent='Contact the event organizer for assistance.';}
 </script>
 </body>
